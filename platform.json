@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/maxgerhardt/platform-w60x"
   },
-  "version": "6.1.1",
+  "version": "6.1.2",
   "frameworks": {
     "wm60x-sdk": {
       "package": "framework-wm60x-sdk",
