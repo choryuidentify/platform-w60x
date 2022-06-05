@@ -105,29 +105,30 @@ class W60xPlatform(PlatformBase):
                     }
                 }
             else:
-                server_args = ["-s", "$PACKAGE_DIR/scripts"]
-                if debug.get("openocd_board"):
-                    server_args.extend([
-                        "-f", "board/%s.cfg" % debug.get("openocd_board")
-                    ])
-                else:
-                    assert debug.get("openocd_target"), (
-                        "Missed target configuration for %s" % board.id)
-                    server_args.extend([
-                        "-f", "interface/%s.cfg" % link,
-                        "-c", "transport select %s" % (
-                            "hla_swd" if link == "stlink" else "swd"),
-                        "-f", "target/%s.cfg" % debug.get("openocd_target")
-                    ])
-                    server_args.extend(debug.get("openocd_extra_args", []))
+                continue
+            #     server_args = ["-s", "$PACKAGE_DIR/scripts"]
+            #     if debug.get("openocd_board"):
+            #         server_args.extend([
+            #             "-f", "board/%s.cfg" % debug.get("openocd_board")
+            #         ])
+            #     else:
+            #         assert debug.get("openocd_target"), (
+            #             "Missed target configuration for %s" % board.id)
+            #         server_args.extend([
+            #             "-f", "interface/%s.cfg" % link,
+            #             "-c", "transport select %s" % (
+            #                 "hla_swd" if link == "stlink" else "swd"),
+            #             "-f", "target/%s.cfg" % debug.get("openocd_target")
+            #         ])
+            #         server_args.extend(debug.get("openocd_extra_args", []))
 
-                debug['tools'][link] = {
-                    "server": {
-                        "package": "tool-openocd-w60x",
-                        "executable": "bin/openocd",
-                        "arguments": server_args
-                    }
-                }
+            #     debug['tools'][link] = {
+            #         "server": {
+            #             "package": "tool-openocd-w60x",
+            #             "executable": "bin/openocd",
+            #             "arguments": server_args
+            #         }
+            #     }
             debug['tools'][link]['onboard'] = link in debug.get("onboard_tools", [])
             debug['tools'][link]['default'] = link in debug.get("default_tools", [])
 
